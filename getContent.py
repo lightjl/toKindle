@@ -1,14 +1,7 @@
 ﻿#!usr/bin/env
 # -*-coding:utf-8 -*-
-import requests
-from bs4 import BeautifulSoup as BS
 import os
 import codecs
-import smtplib
-import datetime
-
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 
 
 class saveToFile():
