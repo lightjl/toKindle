@@ -2,6 +2,7 @@
 # -*-coding:utf-8 -*-
 import os
 import codecs
+import recMail
 
 
 class saveToFile():
@@ -22,3 +23,7 @@ class saveToFile():
         #print(filename2)
         return os.path.isfile(self.sub_folder + filename + ".txt")  # 如果不存在就返回False
         pass
+
+    def isSended(self, filename):
+        return recMail.checkMail(filename, 7)  #7 days
+
