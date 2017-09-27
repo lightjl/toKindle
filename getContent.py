@@ -7,16 +7,20 @@ import recMail
 
 class saveToFile():
     def __init__(self, fold):
-        self.sub_folder = os.path.join(os.getcwd(), "/saveFile/" + fold + "/")
+        self.__subFolderPath = "/saveFile/" + fold + "/"
+        self.sub_folder = os.path.join(os.getcwd(), self.__subFolderPath)
         if not os.path.exists(self.sub_folder):
             os.mkdir(self.sub_folder)
 
     def save(self, filename, text):
         self.__filename = self.sub_folder + filename + ".txt"
         #print(self.__filename)
-        f = codecs.open(self.__filename, "a", "utf-8")
+        f = codecs.open(self.__filename, "w", "utf-8")
         f.write(text)
         f.close()
+        
+    def getSubfolder(self):
+        return self.__subFolderPath
 
     def isDownloaded(self, filename):
         filename2 = self.sub_folder + filename + ".txt"
