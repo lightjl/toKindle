@@ -3,7 +3,10 @@
 import os
 import codecs
 import recMail
+import logging
 
+
+logging.basicConfig(level=logging.CRITICAL, format='%(asctime)s - %(levelname)s -%(message)s')
 
 class saveToFile():
     def __init__(self, fold):
@@ -12,12 +15,17 @@ class saveToFile():
         if not os.path.exists(self.sub_folder):
             os.mkdir(self.sub_folder)
 
-    def save(self, filename, text):
+    def save(self, filename, text, size = 4):
         self.__filename = self.sub_folder + filename + ".txt"
         #print(self.__filename)
         f = codecs.open(self.__filename, "w", "utf-8")
         f.write(text)
         f.close()
+        fileSizeKb = os.path.getsize(self.__filename)/1024
+        if ( fileSizeKb >= size):
+            logging.debug(self.__filename + 'size(Kb): ' + str(fileSizeKb))
+            return True
+        return False
         
     def getSubfolder(self):
         return self.__subFolderPath
